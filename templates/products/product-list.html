@@ -167,7 +167,7 @@
                                             <div class="col">
                                                 <div class="row product-layout-list">
                                                     <div class="col-lg-3 col-md-5 ">
-                                                        {% for produc in products %}
+                                                        {% for product in products %}
                                                         <div class="product-image">
                                                             <a href="single-product.html">
                                                                 <img src="{{ product.image.url }}" alt="Li's Product Image">
@@ -180,10 +180,10 @@
                                                             <div class="product_desc_info">
                                                                 <div class="product-review">
                                                                     <h5 class="manufacturer">
-                                                                        <a href="product-detail.hyml">{{ product.brand }}</a>
+                                                                        <a href="product-detail.html">{{ product.brand }}</a>
                                                                     </h5>
                                                                 </div>
-                                                                <h4><a class="product_name" href="single-product.html">{{ product.name }}</a></h4>
+                                                                <h4><a class="product_name" href="product.html">{{ product.name }}</a></h4>
                                                                 <div class="price-box">
                                                                     {% if product.is_discount %}
                                                                     <span class="new-price">${{ product.get_price }}</span>
@@ -237,108 +237,7 @@
                             </div>
                             <!-- shop-products-wrapper end -->
                         </div>
-                        <div class="col-lg-3 order-2 order-lg-1">
-                            <!--sidebar-categores-box start  -->
-                            
-                            <!--sidebar-categores-box end  -->
-                            <!--sidebar-categores-box start  -->
-                            <div class="sidebar-categores-box">
-                                <div class="sidebar-title">
-                                    <h2>Filter By</h2>
-                                </div>
-                                <!-- btn-clear-all start -->
-                                <button class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button>
-                                <!-- btn-clear-all end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area">
-                                    <h5 class="filter-sub-titel">Brand</h5>
-                                    <div class="categori-checkbox">
-                                        <form action="#">
-                                            {% for br in brands %}
-                                            <ul>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">{{br.name}}({{br.products.count}})</a></li>
-                                            </ul>
-                                            {% endfor %}
-                                        </form>
-                                    </div>
-                                 </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                                    <h5 class="filter-sub-titel">Categories</h5>
-                                    <div class="categori-checkbox">
-                                        <form action="#">
-                                            {% for cat in categories %}
-                                            <ul>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">{{cat.name}}({{cat.products.count}})</a></li>
-                                            </ul>
-                                            {% endfor %}
-                                        </form>
-                                    </div>
-                                 </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                                    <h5 class="filter-sub-titel">Size</h5>
-                                    <div class="size-checkbox">
-                                        <form action="#">
-                                            {% for size in sizes %}
-                                            <ul>
-                                                <li><input type="checkbox" name="product-size"><a href="#">{{ size.name }}({{size.products.count}})</a></li>
-                                            </ul>
-                                            {% endfor %}
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                                    <h5 class="filter-sub-titel">Color</h5>
-                                    <div class="color-categoriy">
-                                        <form action="#">
-                                            {% for color in colors %}
-                                            <ul>
-                                                <li><span class="white"></span><a href="#">{{ color.name}}({{color.products.count}})</a></li>
-                                            </ul>
-                                            {% endfor %}
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- filter-sub-area end -->
-                                <!-- filter-sub-area start -->
-                                <div class="filter-sub-area pt-sm-10 pb-sm-15 pb-xs-15">
-                                    <h5 class="filter-sub-titel">Dimension</h5>
-                                    <div class="categori-checkbox">
-                                        <form action="#">
-                                            {% for dim in dimension %}
-                                            <ul>
-                                                <li><input type="checkbox" name="product-categori"><a href="#">{{dim.name}}({{dim.products.count}})</a></li>
-                                            </ul>
-                                            {% endfor %}
-                                        </form>
-                                    </div>
-                                 </div>
-                                <!-- filter-sub-area end -->
-                            </div>
-                            <!--sidebar-categores-box end  -->
-                            <!-- category-sub-menu start -->
-                            <div class="sidebar-categores-box mb-sm-0 mb-xs-0">
-                                <div class="sidebar-title">
-                                    <h2>Laptop</h2>
-                                </div>
-                                <div class="category-tags">
-                                    <ul>
-                                        <li><a href="# ">Devita</a></li>
-                                        <li><a href="# ">Cameras</a></li>
-                                        <li><a href="# ">Sony</a></li>
-                                        <li><a href="# ">Computer</a></li>
-                                        <li><a href="# ">Big Sale</a></li>
-                                        <li><a href="# ">Accessories</a></li>
-                                    </ul>
-                                </div>
-                                <!-- category-sub-menu end -->
-                            </div>
-                        </div>
+                        {% include 'products/product-filter.html' %}
                     </div>
                 </div>
             </div>
@@ -506,3 +405,16 @@
 
 <!-- shop-left-sidebar31:48-->
 </html>
+{% block extra_js %}
+    <script>
+        function addUrlParameter(name, value) {
+            let searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.has(name) && searchParams.get(name) === value) {
+                searchParams.delete(name)
+            } else {
+                searchParams.set(name, value)
+            }
+            window.location.search = searchParams.toString()
+        }
+    </script>
+{% endblock %}

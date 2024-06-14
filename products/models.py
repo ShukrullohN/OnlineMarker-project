@@ -145,6 +145,10 @@ class ProductModel(models.Model):
     def get_related_products(self):
         return ProductModel.objects.filter(categories=1).exclude(pk=self.pk)[:3]
 
+    def is_cat():
+        if self.categories == 'Laptop':
+            return products
+
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'

@@ -8,7 +8,7 @@ from products.models import *
 
 
 class ProductsListView(ListView):
-    template_name = 'product-list.html'
+    template_name = 'products/product-list.html'
     model = ProductModel
     context_object_name = 'products'
     paginate_by = 2
@@ -36,7 +36,7 @@ class ProductsListView(ListView):
         if dim:
             products = products.filter(dimension__in=dim)
         if size:
-            products = product.filter(size__in=size)
+            products = products.filter(sizes__in=size)
         if sort:
             if sort == '-price':
                 products = products.order_by('-real_price')
@@ -59,7 +59,7 @@ class ProductsListView(ListView):
 
 
 class ProductDetailView(DetailView):
-    template_name = 'product-detail.html'
+    template_name = 'products/product-detail.html'
     model = ProductModel
     context_object_name = 'product'
 

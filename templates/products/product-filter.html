@@ -1,0 +1,117 @@
+<div class="col-lg-3 order-2 order-lg-1">
+    <!--sidebar-categores-box start  -->
+    
+    <!--sidebar-categores-box end  -->
+    <!--sidebar-categores-box start  -->
+    <div class="sidebar-categores-box">
+        <div class="sidebar-title">
+            <h2>Filter By</h2>
+        </div>
+        <!-- btn-clear-all start -->
+        <a href="{% url 'products:list' %}"class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</a> 
+        <!-- btn-clear-all end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area">
+            <h5 class="filter-sub-titel">Brand</h5>
+            <div class="categori-checkbox">
+                <form action="#">
+                    {% for br in brands %}
+                    <ul>
+                        <li><input type="checkbox" name="product-categori"><a {% if 'products/detail' in request.path %}
+                            href="{% url 'products:list' %}?br={{ br.pk }}" {% else %}
+                            style="cursor: pointer"  onclick="addUrlParameter('br', '{{ br.pk }}')"
+                        {% endif %}>{{ br.name }}</a></li>
+                    </ul>
+                    {% endfor %}
+                </form>
+            </div>
+         </div>
+        <!-- filter-sub-area end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area pt-sm-10 pt-xs-10">
+            <h5 class="filter-sub-titel">Categories</h5>
+            <div class="categori-checkbox">
+                <form action="#">
+                    {% for cat in categories %}
+                    <ul>
+                        <li><input type="checkbox" name="product-categori"><a {% if 'products/detail' in request.path %}
+                            href="{% url 'produts:list' %}?cat={{ cat.pk }}" {% else %}
+                            style="cursor: pointer" onclick="addUrlParameter('cat', '{{ cat.pk }}')"
+                        {% endif %}>{{ cat.name }}</a></li>
+                    </ul>
+                    {% endfor %}
+                </form>
+            </div>
+         </div>
+        <!-- filter-sub-area end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area pt-sm-10 pt-xs-10">
+            <h5 class="filter-sub-titel">Size</h5>
+            <div class="size-checkbox">
+                <form action="#">
+                    {% for size in sizes %}
+                    <ul>
+                        <li><input type="checkbox" name="product-size"><a {% if 'products/detail' in request.path %}
+                            href="{% url 'products:list' %}?size={{ size.pk }}" {% else %}
+                            style="cursor: pointer"  onclick="addUrlParameter('size', '{{ size.pk }}')"
+                        {% endif %}>{{ size.name }}</a></li>
+                    </ul>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+        <!-- filter-sub-area end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area pt-sm-10 pt-xs-10">
+            <h5 class="filter-sub-titel">Color</h5>
+            <div class="color-categoriy">
+                <form action="#">
+                    {% for color in colors %}
+                    <ul>
+                        <li><span class="white"></span><a {% if 'products/detail' in request.path %}
+                            href="{% url 'products:list' %}?color={{ color.pk }}" {% else %}
+                            style="cursor: pointer"  onclick="addUrlParameter('color', '{{ color.pk }}')"
+                        {% endif %}>{{ color.name }}</a></li>
+                    </ul>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+        <!-- filter-sub-area end -->
+        <!-- filter-sub-area start -->
+        <div class="filter-sub-area pt-sm-10 pb-sm-15 pb-xs-15">
+            <h5 class="filter-sub-titel">Dimension</h5>
+            <div class="categori-checkbox">
+                <form action="#">
+                    {% for dim in dimension %}
+                    <ul>
+                        <li><input type="checkbox" name="product-categori"><a {% if 'products/detail' in request.path %}
+                            href="{% url 'products:list' %}?dim={{ dim.pk }}" {% else %}
+                            style="cursor: pointer"  onclick="addUrlParameter('dim', '{{ dim.pk }}')"
+                        {% endif %}>{{ dim.name }}</a></li>
+                    </ul>
+                    {% endfor %}
+                </form>
+            </div>
+         </div>
+        <!-- filter-sub-area end -->
+    </div>
+    <!--sidebar-categores-box end  -->
+    <!-- category-sub-menu start -->
+    <div class="sidebar-categores-box mb-sm-0 mb-xs-0">
+        <div class="sidebar-title">
+            <h2>Tags</h2>
+        </div>
+        {% for tag in tags %}
+        <div class="category-tags">
+            <ul>
+                <li><a {% if 'products/detail' in request.path %}
+                    href="{% url 'products:list' %}?tag={{ tag.pk }}" {% else %}
+                    style="cursor: pointer"  onclick="addUrlParameter('tag', '{{ tag.pk }}')"
+                {% endif %}>{{ tag.name }}</a></li>
+            </ul>
+        </div>
+        {% endfor %}
+        <!-- category-sub-menu end -->
+    </div>
+</div>
