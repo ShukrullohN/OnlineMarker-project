@@ -123,7 +123,7 @@
                                                     <div class="single-product-wrap">
 
                                                         <div class="product-image">
-                                                            <a href="{% url 'products:detail' %}">
+                                                            <a href="{% url 'products:detail' pk=product.id %}">
                                                                 <img src="{{ product.image.url }}" alt="Li's Product Image">
                                                             </a>
                                                             {% if product.get_new %}
@@ -134,7 +134,7 @@
                                                             <div class="product_desc_info">
                                                                 <div class="product-review">
                                                                     <h5 class="manufacturer">
-                                                                        <a href="{% url 'products:detail' %}">{{ product.brand }}</a>
+                                                                        <a href="{% url 'products:detail' pk=product.id %}">{{ product.brand }}</a>
                                                                     </h5>
                                                                 </div>
                                                                 <h4><a class="product_name" href="single-product.html">{{ product.name }}</a></h4>
@@ -180,7 +180,7 @@
                                                             <div class="product_desc_info">
                                                                 <div class="product-review">
                                                                     <h5 class="manufacturer">
-                                                                        <a href="product-detail.html">{{ product.brand }}</a>
+                                                                        <a href="product-detail.hyml">{{ product.brand }}</a>
                                                                     </h5>
                                                                 </div>
                                                                 <h4><a class="product_name" href="single-product.html">{{ product.name }}</a></h4>
