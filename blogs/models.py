@@ -4,7 +4,7 @@ from django.db import models
 class AuthorModel(models.Model):
     name = models.CharField(max_length=128, verbose_name=('name'))
     image = models.ImageField(upload_to='blog-authors')
-    about = models.TextField(verbose_name=('name'))
+    about = models.TextField(verbose_name=('about'))
     position = models.CharField(max_length=128, verbose_name=('position'))
     profession = models.CharField(max_length=128, verbose_name=('profession'))
 

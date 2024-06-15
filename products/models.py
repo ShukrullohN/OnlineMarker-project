@@ -93,8 +93,10 @@ class ProductBrandModel(models.Model):
 
 class ProductModel(models.Model):
     image = models.ImageField(upload_to='products/')
-
+    image2 = models.ImageField(upload_to='products/', null = True)
+    
     name = models.CharField(max_length=255,)
+    short_description = models.TextField()
     description = models.TextField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
     discount = models.PositiveSmallIntegerField(default=0,
