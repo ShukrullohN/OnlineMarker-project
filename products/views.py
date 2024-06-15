@@ -63,7 +63,7 @@ class ProductDetailView(DetailView):
     model = ProductModel
     context_object_name = 'product'
 
-    
+  
 
     def get_context_data(self, *, object_list=None,  **kwargs):
         product = ProductModel.objects.get(id=self.kwargs["pk"])
@@ -106,7 +106,7 @@ def add_or_remove_likes(request, pk):
 
 
 class ProductCommentView(LoginRequiredMixin, CreateView):
-    template_name = 'product-detail.html'
+    template_name = 'products/product-detail.html'
     form_class = ProductCommentModelForm
     login_url = reverse_lazy('users:login')
 
@@ -123,4 +123,4 @@ class ProductCommentView(LoginRequiredMixin, CreateView):
         return self.success_url()
 
     def get_success_url(self):
-        return redirect(self.request.GET.get('next', 'products:list'))
+        return redirect(self.request.GET.get('next','products:list'))
