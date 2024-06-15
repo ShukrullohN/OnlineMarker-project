@@ -231,12 +231,13 @@
                     <div class="hb-menu">
                         <nav>
                             <ul>
-                                <li {% if request.path == '/' %} class="dropdown-holder" {% endif %}>
-                                    <a href="{% url 'pages:home' %}" class="parent">Home</a>
-                                <li {% if request.path == '/' %} class="dropdown-holder" {% endif %}>
-                                    <a href="{% url 'products:list' %}" class="parent">Products</a>
-                                <li {% if request.path == '/' %} class="dropdown-holder" {% endif %}>
-                                    <a href="{% url 'blogs:list' %}" class="parent">Blogs</a>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li style="display: none"></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="{% url 'products:list' %}">Products</a></li>
+                                <li><a href="{% url 'blogs:list' %}">Blog</a></li>
                                 <li><a href="{% url 'pages:about-us' %}">About Us</a></li>
                                 <li><a href="{% url 'pages:contact' %}">Contact</a></li>
                             </ul>

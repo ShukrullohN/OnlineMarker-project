@@ -77,7 +77,6 @@ class ProductDetailView(DetailView):
             'sizes': ProductSizeModel.objects.all(),
             'tags': ProductTagModel.objects.all(),
             'colors': ProductColorModel.objects.all(),
-            'famous_products': BlogModel.objects.all().order_by('-created_at')[:2]
         })
         return context
 

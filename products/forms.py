@@ -1,8 +1,9 @@
-from django.forms import ModelForm
-from .models import ProductCommentModel
+from django import forms
+
+from products.models import ProductCommentModel
 
 
-class ProductCommentModelForm(ModelForm):
+class ProductCommentModelForm(forms.ModelForm):
     class Meta:
-        model = Review
-        fields = ['name', 'review', 'email', 'rating']
+        model = ProductCommentModel
+        fields = ['message']
