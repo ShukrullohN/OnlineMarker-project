@@ -170,17 +170,17 @@ class ProductImageModel(models.Model):
 
 UserModel = get_user_model()
 
+
 class ProductCommentModel(models.Model):
-    product = models.ForeignKey(ProductModel, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='comments')
-    message = models.TextField()
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    name = models.CharField(max_length=155)
+    review = models.TextField(max_length=355)
+    email = models.EmailField()
+    rating = models.IntegerField(default=0)
+    
     def __str__(self):
-        return self.message
-
+        return f"{self.name}"
+    
     class Meta:
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'

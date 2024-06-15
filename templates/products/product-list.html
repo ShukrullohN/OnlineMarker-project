@@ -123,18 +123,18 @@
                                                     <div class="single-product-wrap">
 
                                                         <div class="product-image">
-                                                            <a href="{% url 'products:detail' pk=product.id %}">
+                                                            <a href="{% url 'products:detail' product.slug %}">
+                                                                {% for image in products.image.all %}
                                                                 <img src="{{ product.image.url }}" alt="Li's Product Image">
+                                                                {% endif %}
                                                             </a>
-                                                            {% if product.get_new %}
-                                                            <span class="sticker">New</span>
-                                                            {% endif %}
+                                                           
                                                         </div>
                                                         <div class="product_desc">
                                                             <div class="product_desc_info">
                                                                 <div class="product-review">
                                                                     <h5 class="manufacturer">
-                                                                        <a href="{% url 'products:detail' pk=product.id %}">{{ product.brand }}</a>
+                                                                        <a href="{% url 'products:detail' produkt.slug %}">{{ product.brand }}</a>
                                                                     </h5>
                                                                 </div>
                                                                 <h4><a class="product_name" href="single-product.html">{{ product.name }}</a></h4>

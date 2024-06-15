@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
@@ -76,7 +76,8 @@ class ProductDetailView(DetailView):
             'dimensions': ProductDimensionModel.objects.all(),
             'sizes': ProductSizeModel.objects.all(),
             'tags': ProductTagModel.objects.all(),
-            'colors': ProductColorModel.objects.all()
+            'colors': ProductColorModel.objects.all(),
+            'famous_products': BlogModel.objects.all().order_by('-created_at')[:2]
         })
         return context
 
@@ -105,22 +106,15 @@ def add_or_remove_likes(request, pk):
     return redirect(request.GET.get('next', 'products:list'))
 
 
-class ProductCommentView(LoginRequiredMixin, CreateView):
-    template_name = 'product-detail.html'
-    form_class = ProductCommentModelForm
-    login_url = reverse_lazy('users:login')
-
-    def form_valid(self, form):
-        product_id = self.kwargs['pk']
-        product = ProductModel.objects.get(pk=product_id)
-        comment = form.save(commit=False)
-        comment.user = self.request.user
-        comment.product = product
-        comment.save()
-        return self.get_success_url()
-
-    def form_invalid(self, form):
-        return self.success_url()
-
-    def get_success_url(self):
-        return redirect(self.request.GET.get('next', 'products:list'))
+def create_review(request):
+    product_id = request.POST.get('product_id')
+    product = get_object_or_404(Product, id=product_id)
+    to = request.GET.get('to', '/')
+    if request.method == 'POST':
+        form = ProductCommentForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.product = product
+            f.save()
+            return redirect(to)
+    return redirect('/')

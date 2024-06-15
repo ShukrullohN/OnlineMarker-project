@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView
-from products.models import ProductModel
+from products.models import Product
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
 
 class HomePageView(ListView):
     template_name = 'home.html'
-    model = ProductModel
+    model = Product
     context_object_name = 'products'
 
     

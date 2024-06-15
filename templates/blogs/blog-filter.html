@@ -1,0 +1,50 @@
+{% load static %}
+<div class="col-lg-3 order-lg-1 order-2">
+    <div class="li-blog-sidebar-wrapper">
+        <div class="li-blog-sidebar">
+            <div class="li-sidebar-search-form pt-xs-30 pt-sm-30">
+                <form action="#">
+                    <input type="text" class="li-search-field" placeholder="search here">
+                    <button type="submit" class="li-search-btn"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="li-blog-sidebar pt-25">
+            <h4 class="li-blog-sidebar-title">Categories</h4>
+            <ul class="li-blog-archive">
+                <li><input type="checkbox" name="product-categori"><a {% if 'blogs/detail' in request.path %}
+                    href="{% url 'blogs:list' %}?cat={{ cat.pk }}" {% else %}
+                    style="cursor: pointer" onclick="addUrlParameter('cat', '{{ cat.pk }}')"
+                {% endif %}>{{ cat.name }}</a></li>
+            </ul>
+        </div>
+       
+        <div class="li-blog-sidebar">
+            <h4 class="li-blog-sidebar-title">Recent Post</h4>
+            {% for blog in famous_blogs %}
+            <div class="li-recent-post pb-30">
+                <div class="li-recent-post-thumb">
+                    <a href="blog-details-left-sidebar.html">
+                        <img class="img-full" src="{{ blog.image.url }}" alt="Li's Product Image">
+                    </a>
+                </div>
+                <div class="li-recent-post-des">
+                    <span><a href="blog-details-left-sidebar.html">{{ blog.title }}</a></span>
+                    <span class="li-post-date">{{ blog.created_at }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="li-blog-sidebar">
+            <h4 class="li-blog-sidebar-title">Tags</h4>
+            {% for tag in tags %}
+            <ul class="li-blog-tags">
+                <li><a {% if 'blogs/detail' in request.path %}
+                    href="{% url 'blogs:list' %}?tag={{ tag.pk }}" {% else %}
+                    style="cursor: pointer"  onclick="addUrlParameter('tag', '{{ tag.pk }}')"
+                {% endif %}>{{ tag.name }}</a></li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+</div>

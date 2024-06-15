@@ -6,6 +6,7 @@ from blogs.models import BlogModel, BlogCategoryModel, BlogTagModel
 class BlogListView(ListView):
     template_name = 'blogs/blog-list.html'
     context_object_name = 'blogs'
+    model = BlogModel
     paginate_by = 2
 
     def get_queryset(self):
@@ -38,7 +39,6 @@ class BlogDetailView(DetailView):
             "blog": BlogModel.objects.get(pk=self.kwargs['pk']),
             "tags": BlogTagModel.objects.all(),
             "famous_blogs": BlogModel.objects.all().order_by('-created_at')[:2],
-            "related_blogs": BlogModel.objects.filter(categories__in=self.object.categories.all()).order_by(
-                '-created_at')[:3]
+            
         }
         return context
