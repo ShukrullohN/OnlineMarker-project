@@ -29,7 +29,7 @@ class BlogListView(ListView):
         return context
 
 class BlogDetailView(DetailView):
-    template_name = 'blogs/blog-detail.html'
+    template_name = 'blogs/blog-details.html'
     context_object_name = 'blog'
     model = BlogModel
 

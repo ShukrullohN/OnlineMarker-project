@@ -41,7 +41,7 @@ def send_email_verification(user):
 
 
 class RegisterView(CreateView):
-    template_name = 'users/register.html'
+    template_name = 'login-register.html'
     form_class = RegisterForm
     success_url = reverse_lazy('users:verify-email')
 
@@ -85,7 +85,7 @@ def verify_email(request):
 
         else:
             messages.error(request, form.errors)
-    return render(request, 'users/verify-email.html')
+    return render(request, 'verify-email.html')
 
 
 class LoginView(FormView):
@@ -132,11 +132,11 @@ class AccountView(LoginRequiredMixin, UpdateView):
 
 
 class WishlistView(TemplateView):
-    template_name = 'users/wishlist.html'
+    template_name = 'wishlist.html'
 
 
 class CartView(ListView):
-    template_name = 'users/cart.html'
+    template_name = 'cart.html'
     context_object_name = 'products'
 
     def get_queryset(self):
@@ -159,4 +159,4 @@ class CartView(ListView):
 
 
 class ChangePassword(TemplateView):
-    template_name = 'users/reset-password.html'
+    template_name = 'reset-password.html'

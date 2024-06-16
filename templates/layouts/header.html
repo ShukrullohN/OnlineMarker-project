@@ -8,7 +8,7 @@
                 <div class="col-lg-3 col-md-4">
                     <div class="header-top-left">
                         <ul class="phone-wrap">
-                            <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
+                            <li><span>Telephone Enquiry:</span><a href="#">+998889935550</a></li>
                         </ul>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                                     <ul class="ht-setting-list">
                                         <li><a href="{% url 'users:login' %}">My Account</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="login-register.html">Sign In</a></li>
+                                        <li><a href="{ url 'users:login' %}">Sign In</a></li>
                                     </ul>
                                 </div>
                             </li>       
@@ -99,7 +99,7 @@
                                 <div class="hm-minicart-trigger">
                                     <span class="item-icon"></span>
                                     <span class="item-text">£80.00
-                                        <span class="cart-item-count">2</span>
+                                        <span class="cart-item-count">{{ request|get_user_cart|length }}</span>
                                     </span>
                                 </div>
                                 <span></span>
@@ -130,7 +130,7 @@
                                             </button>
                                         </li>
                                     </ul>
-                                    <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                    <p class="minicart-total">SUBTOTAL: <span>{{ request|get_cart_total }}</span></p>
                                     <div class="minicart-button">
                                         <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
                                             <span>View Full Cart</span>
