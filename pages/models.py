@@ -1,5 +1,5 @@
 from django.db import models
-"""class ContactModel(models.Model):
+class ContactModel(models.Model):
     name = models.CharField(max_length=128,)
     email = models.EmailField()
     subject = models.CharField(max_length=255, null=True, blank=True,)
@@ -13,4 +13,4 @@ from django.db import models
 
     class Meta:
         verbose_name = 'contact'
-        verbose_name_plural = 'contacts'"""
+        verbose_name_plural = 'contacts'
