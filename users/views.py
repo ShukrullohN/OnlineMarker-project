@@ -1,4 +1,3 @@
-import pytz
 from datetime import datetime, timedelta
 
 from django.contrib import messages
@@ -90,7 +89,7 @@ def verify_email(request):
 
 
 class LoginView(FormView):
-    template_name = 'users/login-register.html'
+    template_name = 'login-register.html'
     form_class = LoginForm
     success_url = reverse_lazy('pages:home')
 
